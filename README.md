@@ -9,6 +9,6 @@ A movies and TV series watchlist web app built using ReactJS, Tailwind CSS and F
 
 ## Live App
 
-## Visit below link for Watch Bucket website.
+Visit below link for Watch Bucket website.
 
 ### [watch-bucket.web.app](https://watch-bucket.web.app/)
