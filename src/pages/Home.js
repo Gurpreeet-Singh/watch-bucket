@@ -27,7 +27,7 @@ const Home = () => {
           <div className="flex flex-wrap justify-around sm:justify-start gap-6 sm:w-1/2">
             <LinkBtn
               to="/register"
-              className="text-xl border-2 border-yellow-400 bg-yellow-400 hover:bg-yellow-500 text-slate-800 flex-grow"
+              className="text-xl border-2 border-yellow-400 bg-yellow-400 hover:bg-yellow-500 hover:border-yellow-500 text-slate-800 flex-grow"
             >
               Register
             </LinkBtn>
