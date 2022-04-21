@@ -9,8 +9,8 @@ import GenreTag from "../components/WacthedList/GenreTag";
 const SingleShow = () => {
   const { title } = useParams();
   const [show, setShow] = useState(null);
-  const { user } = useAuthContext(false);
-  const [existed, setExisted] = useState(false);
+  const { user, checkedAuth } = useAuthContext(false);
+  const [existed, setExisted] = useState(true);
   const [checkExisted, setCheckExisted] = useState(false);
 
   const navigate = useNavigate();
@@ -30,19 +30,23 @@ const SingleShow = () => {
 
   useEffect(() => {
     const checkExist = async () => {
-      setCheckExisted(false);
-      if (!user || !show) setExisted(false);
-      else {
-        const docRef = doc(db, "watchedLists", user.uid);
-        const docSnap = await getDoc(docRef);
-        const watchedList = docSnap.data().watchedList;
-        const existShow = watchedList.find((item) => item.Title === show.Title);
-        if (existShow) setExisted(true);
+      if (!user || !show) {
+        setExisted(false);
+        setCheckExisted(true);
+        return;
       }
+
+      setCheckExisted(false);
+      const docRef = doc(db, "watchedLists", user.uid);
+      const docSnap = await getDoc(docRef);
+      const watchedList = docSnap.data().watchedList;
+      const existShow = watchedList.find((item) => item.Title === show.Title);
+      if (existShow) setExisted(true);
       setCheckExisted(true);
     };
-    checkExist();
-  }, [user, show]);
+
+    if (checkedAuth) checkExist();
+  }, [user, show, checkedAuth]);
 
   if (!show) return;
 

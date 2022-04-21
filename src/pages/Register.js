@@ -15,26 +15,7 @@ const Register = () => {
 
   const navigate = useNavigate();
   const { dispatch } = useAuthContext();
-  const watchedList = [
-    {
-      Title: "The Social Network",
-      Year: 2013,
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-    },
-    {
-      Title: "Guardians of the Galaxy Vol. 2",
-      Year: 2017,
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
-    },
-    {
-      Title: "Jurassic Park",
-      Year: 1993,
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
-    },
-  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const register = async () => {
@@ -43,7 +24,7 @@ const Register = () => {
         await updateProfile(res.user, { displayName: name });
         await setDoc(doc(db, "watchedLists", res.user.uid), {
           ownerName: name,
-          watchedList,
+          watchedList: [],
         });
         dispatch({ type: "LOGIN", payload: res.user });
         navigate("/watched-lists");

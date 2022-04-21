@@ -39,6 +39,11 @@ const SingleWatchedList = () => {
         {ownerName}'s Watched List
       </h1>
       <ul>
+        {watchedList.length === 0 && (
+          <p className="text-center text-lg text-neutral-600">
+            Empty Watchlist
+          </p>
+        )}
         {watchedList.map((show) => (
           <ShowCard key={show.Title} {...show} />
         ))}
