@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import WatchedLists from "./pages/WatchedLists";
 import SingleWatchedList from "./pages/SingleWatchedList";
 import SingleShow from "./pages/SingleShow";
+import Shows from "./pages/Shows";
 import useAuthContext from "./hooks/useAuthContext";
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
             path="/watched-lists/:id"
             element={checkedAuth ? <SingleWatchedList /> : <div />}
           />
-          <Route path="/shows/:title" element={<SingleShow />} />
+          <Route path="/shows" element={<Shows />} />
+          <Route path="/shows/:id" element={<SingleShow />} />
         </Routes>
       </main>
       <Footer />

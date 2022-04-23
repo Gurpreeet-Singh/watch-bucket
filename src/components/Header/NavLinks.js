@@ -7,6 +7,7 @@ import { auth } from "../../firebase/config";
 const NavLinks = ({ show, onClick }) => {
   const links = [
     { name: "Home", url: "/", showLogin: true, showLogout: true },
+    { name: "Search", url: "/shows", showLogin: true, showLogout: true },
     { name: "Login", url: "/login", showLogin: false, showLogout: true },
     { name: "Register", url: "/register", showLogin: false, showLogout: true },
     {

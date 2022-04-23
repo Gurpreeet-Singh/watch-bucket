@@ -5,7 +5,7 @@ import useAuthContext from "../hooks/useAuthContext";
 import WatchedListCard from "../components/WacthedList/WatchedListCard";
 
 const WatchedLists = () => {
-  const { user } = useAuthContext();
+  const { user, checkedAuth } = useAuthContext();
   const [watchedLists, setWatchedLists] = useState([]);
 
   useEffect(() => {
@@ -22,19 +22,22 @@ const WatchedLists = () => {
   }, []);
 
   return (
-    <section className="sm:text-left px-4 max-w-screen-md md:mx-auto my-10">
-      <h1 className="text-4xl font-bold tracking-wide">
-        Hello {(user && user.displayName) || "Watcher"}
-      </h1>
-      <h3 className="text-2xl font-medium tracking-wide my-6 ">
-        See what other people have watched
-      </h3>
-      <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
-        {watchedLists.map((watchedList) => (
-          <WatchedListCard key={watchedList.id} {...watchedList} />
-        ))}
-      </ul>
-    </section>
+    checkedAuth && (
+      <section className="sm:text-left px-4 max-w-screen-md md:mx-auto my-10">
+        <h1 className="text-4xl font-bold tracking-wide">
+          Hello {(user && user.displayName) || "Watcher"}
+        </h1>
+
+        <h3 className="text-2xl font-medium tracking-wide my-6 ">
+          See what other people have watched
+        </h3>
+        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+          {watchedLists.map((watchedList) => (
+            <WatchedListCard key={watchedList.id} {...watchedList} />
+          ))}
+        </ul>
+      </section>
+    )
   );
 };
 

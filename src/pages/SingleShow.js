@@ -7,7 +7,7 @@ import useAuthContext from "../hooks/useAuthContext";
 import GenreTag from "../components/WacthedList/GenreTag";
 
 const SingleShow = () => {
-  const { title } = useParams();
+  const { id } = useParams();
   const [show, setShow] = useState(null);
   const { user, checkedAuth } = useAuthContext(false);
   const [existed, setExisted] = useState(true);
@@ -18,7 +18,7 @@ const SingleShow = () => {
   useEffect(() => {
     const fetchShow = async () => {
       const res = await fetch(
-        `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_APIKEY}&t=${title}`
+        `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_APIKEY}&i=${id}`
       );
       const data = await res.json();
       if (!data) return console.log("Wrong ID");
@@ -26,7 +26,7 @@ const SingleShow = () => {
       setShow(data);
     };
     fetchShow();
-  }, [title]);
+  }, [id]);
 
   useEffect(() => {
     const checkExist = async () => {
@@ -50,8 +50,18 @@ const SingleShow = () => {
 
   if (!show) return;
 
-  const { Title, Poster, Year, Genre, Runtime, Rated, Plot, Actors, Language } =
-    show;
+  const {
+    Title,
+    Poster,
+    Year,
+    Genre,
+    Runtime,
+    Rated,
+    Plot,
+    Actors,
+    Language,
+    imdbID,
+  } = show;
   const genres = Genre.split(",");
 
   const handleClick = async () => {
@@ -60,7 +70,7 @@ const SingleShow = () => {
     const docSnap = await getDoc(docRef);
     let watchedList = docSnap.data().watchedList;
     if (existed) return;
-    watchedList = [{ Title, Poster, Year, Genre }, ...watchedList];
+    watchedList = [{ Title, Poster, Year, Genre, imdbID }, ...watchedList];
     await updateDoc(docRef, { watchedList });
     setExisted(true);
   };

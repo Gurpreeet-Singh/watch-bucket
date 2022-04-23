@@ -45,6 +45,7 @@ const Register = () => {
           label="Name"
           id="text"
           value={name}
+          className="my-1"
           onChange={(e) => setName(e.target.value)}
         />
         <Input
@@ -52,6 +53,7 @@ const Register = () => {
           label="Email"
           id="email"
           value={email}
+          className="my-1"
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
@@ -59,6 +61,7 @@ const Register = () => {
           label="Paswword"
           id="password"
           value={password}
+          className="my-1"
           onChange={(e) => setPassword(e.target.value)}
         />
         {/* <Input

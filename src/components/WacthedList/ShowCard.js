@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GenreTag from "./GenreTag";
 
-const ShowCard = ({ Title, Year, Poster, Genre }) => {
+const ShowCard = ({ Title, Year, Poster, Genre, imdbID }) => {
   const genres = Genre.split(",");
   return (
     <li className="my-2 rounded overflow-hidden bg-neutral-100 sm:hover:bg-neutral-50 border shadow sm:hover:shadow-md duration-20">
-      <Link to={`/shows/${Title}`} className="flex">
+      <Link to={`/shows/${imdbID}`} className="flex">
         <div className="h-32 rounded overflow-hidden flex-shrink-0">
           <img src={Poster} alt={Title} className="h-full" />
         </div>
