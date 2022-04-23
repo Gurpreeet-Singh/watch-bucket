@@ -8,7 +8,6 @@ const Shows = () => {
   const [shows, setShows] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
   const ref = useRef(null);
-  console.log(shows);
 
   useEffect(() => {
     let ignore = false;
